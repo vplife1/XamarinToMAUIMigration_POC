@@ -15,6 +15,9 @@ public static class MauiProgram
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+            })
+            .ConfigureMauiHandlers((handlers) => {
+                handlers.AddHandler(typeof(PressableView), typeof(PressableViewRenderer));
             });
 
         return builder.Build();
