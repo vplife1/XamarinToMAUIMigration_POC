@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Maui.Controls.Compatibility.Hosting;
 
 namespace XamarinToMAUI_Migration_POC;
 public static class MauiProgram
@@ -10,6 +6,7 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
+        builder.UseMauiCompatibility();
         builder
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
@@ -17,7 +14,8 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
             })
             .ConfigureMauiHandlers((handlers) => {
-                handlers.AddHandler(typeof(PressableView), typeof(PressableViewRenderer));
+                handlers.AddCompatibilityRenderer(typeof(PressableView), typeof(PressableView));
+               
             });
 
         return builder.Build();
